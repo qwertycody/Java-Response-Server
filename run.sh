@@ -1,0 +1,5 @@
+PORT="1338"
+VERBOSE="true"
+RESPONSE_DIRECTORY="C:\PathToResponses"
+RESPONSE_SERVER_PATH="target/Response_Server.jar"
+java -jar "$RESPONSE_SERVER_PATH" "--verbose=$VERBOSE" "--port=$PORT" "--response-directory=$RESPONSE_DIRECTORY"
