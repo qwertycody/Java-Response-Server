@@ -62,8 +62,8 @@ public class Server implements Runnable {
 			httpObject = Utils.processIncomingSocket(httpObject);
 
 			// we support only GET and HEAD methods, we check
-			if (httpObject.getRequest().getHeader_method().equals("GET")
-					|| httpObject.getRequest().getHeader_method().equals("POST")) {
+			//if (httpObject.getRequest().getHeader_method().equals("GET")
+			//		|| httpObject.getRequest().getHeader_method().equals("POST")) {
 
 				httpObject = doWork(httpObject);
 
@@ -74,7 +74,7 @@ public class Server implements Runnable {
 							+ " of type " + httpObject.getResponse().getHeader_contentType()
 							+ " returned");
 				}
-			}
+			//}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -104,6 +104,13 @@ public class Server implements Runnable {
 			String path = httpObject.getRequest().getHeader_path();
 			path = path.replace("/Main", "");
 			path = path.replace("/", "");
+			
+			int queryStart = path.indexOf("?");
+			
+			if(queryStart != -1)
+			{
+				path = path.substring(0, queryStart);
+			}
 
 			String fullPath = Constants.WEB_ROOT + "/" + path;
 			File file = new File(fullPath);
